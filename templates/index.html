@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Standardizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Standardizer</h1>
+            <p>Standardize your PDF documents to consistent page sizes</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="pdfFile">Select PDF file:</label>
+                        <div class="file-input-container">
+                            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                            <div class="file-name" id="fileName">No file selected</div>
+                        </div>
+                        <div id="dropArea" class="drop-area">
+                            <p>Drag & drop PDF files here</p>
+                            <span>or</span>
+                            <button type="button" id="browseBtn" class="browse-btn">Browse Files</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="presetSize">Page Size Preset:</label>
+                        <select id="presetSize" name="presetSize">
+                            <option value="a4" selected>A4 (210 × 297 mm)</option>
+                            <option value="letter">US Letter (8.5 × 11 in)</option>
+                            <option value="legal">US Legal (8.5 × 14 in)</option>
+                            <option value="custom">Custom Size</option>
+                        </select>
+                    </div>
+
+                    <div id="customSizeFields" class="form-group hidden">
+                        <div class="size-inputs">
+                            <div>
+                                <label for="width">Width (points):</label>
+                                <input type="number" id="width" name="width" value="595" min="1">
+                            </div>
+                            <div>
+                                <label for="height">Height (points):</label>
+                                <input type="number" id="height" name="height" value="842" min="1">
+                            </div>
+                        </div>
+                        <div class="size-note">
+                            <p>1 inch = 72 points, A4 = 595 × 842 points</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="convertBtn" disabled>Standardize PDF</button>
+                </form>
+
+                <div id="progressContainer" class="hidden">
+                    <div class="progress">
+                        <div id="progressBar"></div>
+                    </div>
+                    <div id="statusMessage">Processing...</div>
+                </div>
+
+                <div id="resultContainer" class="hidden">
+                    <div class="success-message">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>PDF successfully standardized!</span>
+                    </div>
+                    <a id="downloadLink" href="#" class="download-btn">Download Standardized PDF</a>
+                    <button id="newConversionBtn" class="secondary-btn">Start New Conversion</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 PDF Standardizer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html> 

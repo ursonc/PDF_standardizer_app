@@ -1,38 +1,76 @@
 # PDF Standardizer
 
-A Python tool that standardizes all pages in a PDF to the same size while maintaining quality and aspect ratio.
+A web application that allows users to standardize PDF documents to consistent page sizes.
 
 ## Features
 
-- Maintains aspect ratio of original pages
-- Centers content on the standardized page
-- Preserves image quality
-- Configurable output page size
-- Defaults to A4 size (595x842 points)
+- Upload PDF files through a modern web interface
+- Standardize PDFs to common paper sizes (A4, Letter, Legal) or custom dimensions
+- Preview and download the standardized PDF
+- Responsive design for desktop and mobile use
 
 ## Installation
 
-1. Make sure you have Python 3.7+ installed
+1. Clone this repository:
+   ```
+   git clone https://github.com/yourusername/pdf_standardizer.git
+   cd pdf_standardizer
+   ```
+
 2. Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
+   ```
+   pip install -r requirements.txt
+   ```
 
 ## Usage
 
-Basic usage:
-```bash
-python pdf_standardizer.py input.pdf output.pdf
+### Web Application
+
+1. Start the Flask web server:
+   ```
+   python app.py
+   ```
+
+2. Open your web browser and navigate to:
+   ```
+   http://localhost:5000
+   ```
+
+3. Upload a PDF file, select a target page size, and click "Standardize PDF"
+
+4. Download your standardized PDF file
+
+### Command Line Usage
+
+You can also use the PDF standardizer from the command line:
+
+```
+python pdf_standardizer.py input.pdf output.pdf [--width WIDTH] [--height HEIGHT]
 ```
 
-Custom page size (in points):
-```bash
-python pdf_standardizer.py input.pdf output.pdf --width 612 --height 792  # Letter size
+Arguments:
+- `input.pdf`: Path to the input PDF file
+- `output.pdf`: Path to save the standardized PDF
+- `--width`: Target width in points (default: 595 for A4)
+- `--height`: Target height in points (default: 842 for A4)
+
+Example:
+```
+python pdf_standardizer.py document.pdf document_standardized.pdf --width 612 --height 792
 ```
 
-## Notes
+## Page Size Reference
 
-- The tool uses points as the unit of measurement (72 points = 1 inch)
-- Default size is A4 (595x842 points)
-- The content is scaled to fit within the target size while maintaining aspect ratio
-- Content is centered on the page 
+Common page sizes in points (72 points = 1 inch):
+
+- A4: 595 × 842 points
+- US Letter: 612 × 792 points
+- US Legal: 612 × 1008 points
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. 
